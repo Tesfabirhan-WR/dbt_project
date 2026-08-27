@@ -12,18 +12,18 @@ CREATE ROLE dwh_northwind_dbt;
 GRANT CONNECT ON DATABASE dwh_northwind TO DWH_dbt_project;
 GRANT USAGE ON SCHEMA public TO DWH_dbt_project;
 GRANT SELECT ON ALL TABLES IN SCHEMA public TO DWH_dbt_project;
-GRANT CREATE ON DATABASE northwind TO DWH_dbt_project;
+GRANT CREATE ON DATABASE dwh_northwind TO DWH_dbt_project;
 
 -- Utilisateurs
 CREATE USER analyste WITH PASSWORD 'analyste123';
 GRANT dwh_northwind_readonly TO analyste;
 
 CREATE USER dbt_user WITH PASSWORD 'zawl';
-GRANT northwind_dbt TO dbt_user;
+GRANT dwh_northwind TO dbt_user;
 
 -- Droits par défaut sur les futures tables créées par dbt_user
 ALTER DEFAULT PRIVILEGES FOR ROLE DWH_dbt_project IN SCHEMA public
-GRANT SELECT ON TABLES TO northwind_dbt;
+GRANT SELECT ON TABLES TO dwh_northwind;
 
 ALTER DEFAULT PRIVILEGES FOR ROLE northwind_readonly IN SCHEMA public
 GRANT SELECT ON TABLES TO dwh_northwind_readonly;
